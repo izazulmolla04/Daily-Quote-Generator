@@ -1,0 +1,53 @@
+import json
+import random
+import os
+
+FILE_NAME = "quotes.json"
+
+# Load quotes from file or create default
+def load_quotes():
+    if not os.path.exists(FILE_NAME):
+        return [
+            {"text": "Be yourself; everyone else is already taken.", "author": "Oscar Wilde"},
+            {"text": "In the middle of difficulty lies opportunity.", "author": "Albert Einstein"},
+            {"text": "Start where you are. Use what you have. Do what you can.", "author": "Arthur Ashe"}
+        ]
+    with open(FILE_NAME, "r") as file:
+        return json.load(file)
+
+# Save quotes to file
+def save_quotes(quotes):
+    with open(FILE_NAME, "w") as file:
+        json.dump(quotes, file, indent=4)
+
+# Show random quote
+def show_quote(quotes):
+    quote = random.choice(quotes)
+    print(f"\n\"{quote['text']}\"\n— {quote['author']}\n")
+
+# Add a new quote
+def add_quote(quotes):
+    text = input("Enter the quote: ")
+    author = input("Enter the author: ")
+    quotes.append({"text": text, "author": author})
+    save_quotes(quotes)
+    print("Quote added successfully!\n")
+
+# Main program loop
+def main():
+    quotes = load_quotes()
+    while True:
+        print("1. Show Quote\n2. Add Quote\n3. Exit")
+        choice = input("Choose an option (1/2/3): ")
+        if choice == '1':
+            show_quote(quotes)
+        elif choice == '2':
+            add_quote(quotes)
+        elif choice == '3':
+            print("Goodbye! Keep smiling :)")
+            break
+        else:
+            print("Invalid choice. Please try again.\n")
+
+if __name__ == "__main__":
+    main()
