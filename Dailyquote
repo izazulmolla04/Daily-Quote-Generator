@@ -10,7 +10,8 @@ def load_quotes():
         return [
             {"text": "Be yourself; everyone else is already taken.", "author": "Oscar Wilde"},
             {"text": "In the middle of difficulty lies opportunity.", "author": "Albert Einstein"},
-            {"text": "Start where you are. Use what you have. Do what you can.", "author": "Arthur Ashe"}
+            {"text": "If you want to shine like a sun, first burn like a sun...", "author": "A.P.J Abdul Kalam"}
+             
         ]
     with open(FILE_NAME, "r") as file:
         return json.load(file)
